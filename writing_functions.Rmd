@@ -1,0 +1,65 @@
+---
+title: "writing_functions"
+author: "Hanrui Li"
+date: "2024-10-31"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+library(tidyverse)
+library(rvest)
+
+set.seed(1)
+```
+
+## Do something simple
+
+```{r}
+x_vec = rnorm(25, mean = 5, sd = 3)
+
+(x_vec - mean(x_vec)) / sd(x_vec)
+```
+
+Want a function to compute z-zcores
+
+```{r}
+z_scores = function(x) {
+  z = (x - mean(x)) / sd(x)
+  return(z)
+}
+
+z_scores(x_vec)
+```
+
+Try my functions on some other things. These should give errors.
+
+```{r}
+z_scores(3)
+
+# z_scores("my name is jeff") # error: non-numeric
+
+# z_scores(iris) # error: cannot be coerced to type 'double'
+
+z_scores(c(TRUE,TRUE,FALSE,TRUE))
+
+z_scores(sample(c(TRUE, FALSE), 25, replace = TRUE))
+```
+
+```{r}
+z_scores = function(x) {
+  
+  if (!is.numeric(x)) {
+    stop("Argument x should be numeric")
+  } else if (length(x) == 1) {
+    stop("Z scores cannot be computed for length 1 vectors")
+  }
+  
+  z = mean(x) / sd(x)
+  
+  z
+}
+```
+
+
+
+
