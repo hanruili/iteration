@@ -357,6 +357,10 @@ display: none;
 </div>
 
 
+<pre class="r"><code>library(tidyverse)
+library(rvest)
+
+set.seed(1)</code></pre>
 <div id="do-something-simple" class="section level2">
 <h2>Do something simple</h2>
 <pre class="r"><code>x_vec = rnorm(25, mean = 5, sd = 3)
@@ -544,7 +548,30 @@ lotr_tidy =
   bind_rows(
     lotr_load_and_tidy(&quot;LotR_Words.xlsx&quot;, &quot;B3:D6&quot;, &quot;fellowship_ring&quot;),
     lotr_load_and_tidy(&quot;LotR_Words.xlsx&quot;, &quot;F3:H6&quot;, &quot;two_towers&quot;),
-    lotr_load_and_tidy(&quot;LotR_Words.xlsx&quot;, &quot;J3:L6&quot;, &quot;return_king&quot;))</code></pre>
+    lotr_load_and_tidy(&quot;LotR_Words.xlsx&quot;, &quot;J3:L6&quot;, &quot;return_king&quot;))
+
+lotr_tidy</code></pre>
+<pre><code>## # A tibble: 18 × 4
+##    movie           race   sex    words
+##    &lt;chr&gt;           &lt;chr&gt;  &lt;chr&gt;  &lt;dbl&gt;
+##  1 fellowship_ring elf    female  1229
+##  2 fellowship_ring elf    male     971
+##  3 fellowship_ring hobbit female    14
+##  4 fellowship_ring hobbit male    3644
+##  5 fellowship_ring man    female     0
+##  6 fellowship_ring man    male    1995
+##  7 two_towers      elf    female   331
+##  8 two_towers      elf    male     513
+##  9 two_towers      hobbit female     0
+## 10 two_towers      hobbit male    2463
+## 11 two_towers      man    female   401
+## 12 two_towers      man    male    3589
+## 13 return_king     elf    female   183
+## 14 return_king     elf    male     510
+## 15 return_king     hobbit female     2
+## 16 return_king     hobbit male    2673
+## 17 return_king     man    female   268
+## 18 return_king     man    male    2459</code></pre>
 </div>
 <div id="nsduh" class="section level2">
 <h2>NSDUH</h2>
@@ -616,6 +643,40 @@ nsduh_results</code></pre>
 ##  9 Alabama 18+   2013-2014    9.99 marj_one_year
 ## 10 Alabama 18+   2014-2015    9.59 marj_one_year
 ## # ℹ 1,520 more rows</code></pre>
+</div>
+<div id="mean-scoping-example" class="section level2">
+<h2>Mean scoping example</h2>
+<pre class="r"><code>f = function(x) {
+  z = x + y
+  z
+}
+
+x = 1
+y = 2
+
+f(x = y)</code></pre>
+<pre><code>## [1] 4</code></pre>
+</div>
+<div id="functions-as-arguments" class="section level2">
+<h2>Functions as arguments</h2>
+<pre class="r"><code>my_summary = function(x, summ_func) {
+  summ_func(x)
+}
+
+x_vec = rnorm(100, 3, 7)
+
+mean(x_vec)</code></pre>
+<pre><code>## [1] 2.646269</code></pre>
+<pre class="r"><code>median(x_vec)</code></pre>
+<pre><code>## [1] 2.091605</code></pre>
+<pre class="r"><code>my_summary(x_vec, mean)</code></pre>
+<pre><code>## [1] 2.646269</code></pre>
+<pre class="r"><code>my_summary(x_vec, sd)</code></pre>
+<pre><code>## [1] 7.792839</code></pre>
+<pre class="r"><code>my_summary(x_vec, IQR)</code></pre>
+<pre><code>## [1] 11.41527</code></pre>
+<pre class="r"><code>my_summary(x_vec, var)</code></pre>
+<pre><code>## [1] 60.72834</code></pre>
 </div>
 
 

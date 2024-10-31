@@ -5,7 +5,7 @@ date: "2024-10-31"
 output: html_document
 ---
 
-```{r setup, include=FALSE}
+```{r warning=FALSE,message=FALSE}
 library(tidyverse)
 library(rvest)
 
@@ -209,6 +209,8 @@ lotr_tidy =
     lotr_load_and_tidy("LotR_Words.xlsx", "B3:D6", "fellowship_ring"),
     lotr_load_and_tidy("LotR_Words.xlsx", "F3:H6", "two_towers"),
     lotr_load_and_tidy("LotR_Words.xlsx", "J3:L6", "return_king"))
+
+lotr_tidy
 ```
 
 
@@ -278,6 +280,39 @@ nsduh_results =
 nsduh_results
 ```
 
+
+## Mean scoping example
+
+```{r}
+f = function(x) {
+  z = x + y
+  z
+}
+
+x = 1
+y = 2
+
+f(x = y)
+```
+
+
+## Functions as arguments
+
+```{r}
+my_summary = function(x, summ_func) {
+  summ_func(x)
+}
+
+x_vec = rnorm(100, 3, 7)
+
+mean(x_vec)
+median(x_vec)
+
+my_summary(x_vec, mean)
+my_summary(x_vec, sd)
+my_summary(x_vec, IQR)
+my_summary(x_vec, var)
+```
 
 
 
