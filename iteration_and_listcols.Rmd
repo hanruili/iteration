@@ -10,7 +10,6 @@ library(tidyverse)
 library(rvest)
 
 set.seed(1)
-
 ```
 
 ## Lists
@@ -100,6 +99,7 @@ for (i in 1:4) {
 
 ```{r}
 output = map(list_norms, mean_and_sd)
+output
 ```
 
 ```{r}
@@ -111,6 +111,15 @@ for (i in 1:4) {
 
 output = map(list_norms, median)
 ```
+
+
+## `map` variants
+
+```{r}
+output = map_dbl(list_norms, median, .id = "input")
+
+```
+
 
 
 
