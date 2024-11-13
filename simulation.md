@@ -208,6 +208,7 @@ sim_regression = function(n, beta0 = 2, beta1 = 3) {
 ```
 
 $$\hat{\beta}_0 \sim [\beta_0,\sigma^2(\frac{1}{n} + \frac{\bar{x}}{\sum(x_i-\bar{x})^2})]$$
+
 and
 
 $$\hat{\beta}_1\sim[\beta_1,\frac{\sigma^2}{\sum(x_i-\bar{x})^2}]$$
@@ -260,4 +261,4 @@ sim_results_df |>
   facet_grid(. ~ true_sd)
 ```
 
-![](simulation_files/figure-gfm/unnamed-chunk-15-1.png)<!-- -->
+![](simulation_files/figure-gfm/unnamed-chunk-15-1.png)<!-- --> ,,,
